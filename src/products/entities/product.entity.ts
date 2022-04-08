@@ -1,13 +1,19 @@
+import { Entity, PrimaryGeneratedColumn,Column } from "typeorm";
+@Entity({name:"products"})
 export class Product {
-    constructor(id:Number,name:string, desc:string, price:Number){
-        this.Id = id;
-        this.Name = name;
-        this.Desc = desc;
-        this.Price = price;
+    constructor(id:number,name:string, desc:string, price:DoubleRange){
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.price = price;
 
     }
-    public Id : Number;
-    public Name: string;
-    public Desc:string;
-    public Price:Number;
+    @PrimaryGeneratedColumn()
+    id!: number;
+    @Column()
+    name!: string;
+    @Column()
+    desc:string;
+    @Column()
+    public price:DoubleRange;
 }
