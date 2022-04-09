@@ -3,20 +3,18 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
-
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ProductsService {
-  constructor(@Inject('PRODUCT_REPOSITORY')
-  private productRepository: Repository<Product>){
-    
-  }
+  //constructor(@Inject('PRODUCT_REPOSITORY')
+  constructor(@InjectRepository(Product) private productRepo: Repository<Product>) {}
   create(createProductDto: CreateProductDto) {
     return 'This action adds a new product';
   }
 
-  findAll() {
-    return `This action returns all products`;
+  findAll():Promise<Product[]> {
+    return this.productRepo.find();
   }
 
   findOne(id: number) {

@@ -1,19 +1,25 @@
-import { Entity, PrimaryGeneratedColumn,Column } from "typeorm";
-@Entity({name:"products"})
+import { Entity, PrimaryGeneratedColumn,Column,CreateDateColumn } from "typeorm";
+@Entity({ name: 'products' })
 export class Product {
-    constructor(id:number,name:string, desc:string, price:DoubleRange){
-        this.id = id;
-        this.name = name;
-        this.desc = desc;
-        this.price = price;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    }
-    @PrimaryGeneratedColumn()
-    id!: number;
-    @Column()
-    name!: string;
-    @Column()
-    desc:string;
-    @Column()
-    public price:DoubleRange;
+  // Updated and added 'numeric'
+  @Column({ type: 'numeric', precision: 10, scale: 2 })
+  amount: number;
+
+  @Column({ type: 'varchar', length: 300 })
+  name: string;
+
+  @Column({ type: 'varchar', length: 300 })
+  description: string;
+
+  @Column({ default: true })
+  isActive: string;
+
+  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @Column({ type: 'varchar', length: 300 })
+  createdBy: string;
 }
