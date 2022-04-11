@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn,Column,CreateDateColumn } from "typeorm";
 @Entity({ name: 'products' })
 export class Product {
-  @PrimaryGeneratedColumn()
+   @PrimaryGeneratedColumn('increment')
   id: number;
 
   // Updated and added 'numeric'

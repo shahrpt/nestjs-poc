@@ -9,8 +9,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class ProductsService {
   //constructor(@Inject('PRODUCT_REPOSITORY')
   constructor(@InjectRepository(Product) private productRepo: Repository<Product>) {}
-  create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+  create(product: Product) {
+    return this.productRepo.insert(product);
   }
 
   findAll():Promise<Product[]> {
@@ -18,14 +18,14 @@ export class ProductsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} product`;
+    return this.productRepo.findOne(id);
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  update(id: number, product: Product) {
+    return this.productRepo.update(id,product);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} product`;
+    return this.productRepo.delete(id);
   }
 }
