@@ -1,22 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
+  constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
 
   private readonly users = [
     {
+      id: 1,
       userId: 1,
+      firstName:"john",
+      lastName:"",
       username: 'john',
+      isActive: true,
       password: 'changeme',
     },
     {
+      id: 2,
       userId: 2,
       username: 'maria',
+      firstName:"maria",
+      lastName:"",
+      isActive : true,
       password: 'guess',
     },
   ];
