@@ -23,7 +23,7 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
-
+In this PoC we are using NestJs, with TypeORM, Swagger and Postgre DB as the backend.
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
